@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
+    public enum PlayerNumbers
+    {
+        Player1,
+        Player2
+    }
+    public PlayerNumbers player;
+
     public float speed = 5f;
     public float jumpForce = 5f;
     public Transform groundCheck;
@@ -13,28 +20,24 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D playerCollider;
     private bool isGrounded;
-    private bool isPlayer1;
-    private bool isPlayer2;
 
     private string horizontalAxis;
-    private string jumpButton;
+    private KeyCode jumpButton;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
-        isPlayer1 = tag == "Player1";
-        isPlayer2 = tag == "Player2";
 
-        if (isPlayer1)
+        horizontalAxis = player.ToString() + "_Horizontal";
+
+        if (player == PlayerNumbers.Player1)
         {
-            horizontalAxis = "Player1_Horizontal";
-            jumpButton = "Player1_Jump";
+            jumpButton = KeyCode.Joystick1Button0;
         }
-        else if (isPlayer2)
+        else if (player == PlayerNumbers.Player2)
         {
-            horizontalAxis = "Player2_Horizontal";
-            jumpButton = "Player2_Jump";
+            jumpButton = KeyCode.Joystick2Button0;
         }
     }
 
@@ -44,7 +47,7 @@ public class CharacterController2D : MonoBehaviour
 
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
-        if (isGrounded && Input.GetButtonDown(jumpButton))
+        if (isGrounded && Input.GetKeyDown(jumpButton))
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
