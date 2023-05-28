@@ -18,7 +18,7 @@ public class CharacterController2D : MonoBehaviour
     [Range(1,10)] public float jumpForce = 5f;
     private float MoveInput()
     {
-        return Input.GetAxis(player.ToString() + "_Horizontal") * speed /* Time.deltaTime*/;
+        return Input.GetAxis(player.ToString() + "_Horizontal") * speed;
     }
     private bool JumpInput()
     {
