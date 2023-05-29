@@ -37,9 +37,15 @@ public class CharacterController2D : MonoBehaviour
     [Range(0,1)] public float groundCheckRadius = 0.2f;
     private bool Grounded()
     {
-        float extraHeight = 0.1f;
-        RaycastHit2D hit = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeight, groundLayer);
-        return hit.collider != null;
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRadius);
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Ground")) return true;
+            else if (hit.collider.CompareTag("Positive")) return true;
+            else if (hit.collider.CompareTag("Negative")) return true;
+            else return false;
+        }
+        else return false;
     }
 
     [Header("Components")]
@@ -52,8 +58,6 @@ public class CharacterController2D : MonoBehaviour
         if(playerCollider == null) playerCollider = GetComponent<Collider2D>();
     }
 
-    
-
     private void LateUpdate()
     {
         rb.velocity = new Vector2(MoveInput(), rb.velocity.y);
@@ -62,6 +66,5 @@ public class CharacterController2D : MonoBehaviour
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
-        
     }
 }

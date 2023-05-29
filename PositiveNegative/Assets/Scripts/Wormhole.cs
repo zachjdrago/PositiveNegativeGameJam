@@ -11,7 +11,6 @@ public class Wormhole : MonoBehaviour
     private bool active = true;
     [HideInInspector] public bool fullInstability;
     private SpriteRenderer spriteRenderer;
-    private Sprite sprite;
 
     [HideInInspector] public Transform player;
     private Vector2 oldPosition;
@@ -20,7 +19,6 @@ public class Wormhole : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        sprite = spriteRenderer.sprite;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,7 +29,7 @@ public class Wormhole : MonoBehaviour
 
             int direction = (int)Mathf.Sign(player.position.x);
             oldPosition = player.position;
-            newPosition = new(player.position.x + gm.dimensionOffset * 2 * -direction, player.position.y);
+            newPosition = new Vector2(player.position.x + gm.dimensionOffset * 2 * -direction, player.position.y);
 
             StartCoroutine(WormholeActivation());
         }
@@ -39,8 +37,9 @@ public class Wormhole : MonoBehaviour
 
     private IEnumerator WormholeActivation()
     {
-        WormHoleActive(false);
+        WormholeActive(false);
         player.position = newPosition;
+        spriteRenderer.enabled = false;
         gm.AddActiveWormhole(this);
 
         yield return new WaitForSeconds(shiftDuration);
@@ -60,17 +59,17 @@ public class Wormhole : MonoBehaviour
 
         fullInstability = false;
         player = null;
-        oldPosition = new();
-        newPosition = new();
+        oldPosition = Vector2.zero;
+        newPosition = Vector2.zero;
 
-        WormHoleActive(true);
+        WormholeActive(true);
     }
 
-    private void WormHoleActive(bool isActive)
+    private void WormholeActive(bool isActive)
     {
         active = isActive;
 
-        if (isActive) spriteRenderer.sprite = sprite;
+        if (isActive) spriteRenderer.enabled = true;
         else spriteRenderer.sprite = null;
     }
 }
