@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: 0
   speed: 5
-  jumpForce: 6.5
+  jumpForce: 7
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
