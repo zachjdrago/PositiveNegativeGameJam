@@ -15,10 +15,10 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - NegativePlayer
+  - PositivePlayer
+  - Negative
+  - Positive
   - 
   - 
   - 

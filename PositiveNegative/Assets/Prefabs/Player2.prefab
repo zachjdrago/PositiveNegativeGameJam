@@ -21,7 +21,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6196519561010776672, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
       propertyPath: m_Name
-      value: PlayerTwo
+      value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196519561010776672, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6196519561010776675, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
       propertyPath: player

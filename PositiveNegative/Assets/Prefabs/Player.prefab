@@ -103,7 +103,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -166,11 +166,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: 0
   speed: 5
-  jumpForce: 5
-  groundCheck: {fileID: 6196519560531319328}
+  jumpForce: 6.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  groundCheck: {fileID: 6196519560531319328}
   groundCheckRadius: 0.1
   rb: {fileID: 6196519561010776674}
   playerCollider: {fileID: 6196519561010776684}
@@ -190,7 +190,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d08aaed54bf20ed4188f2183567d9854, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -204,7 +204,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 6196519561010776672}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d08aaed54bf20ed4188f2183567d9854, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
