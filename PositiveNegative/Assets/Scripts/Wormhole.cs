@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Wormhole : MonoBehaviour
@@ -10,8 +9,13 @@ public class Wormhole : MonoBehaviour
     public GameManager gm;
 
     private bool active = true;
+    [HideInInspector] public bool fullInstability;
     private SpriteRenderer spriteRenderer;
     private Sprite sprite;
+
+    [HideInInspector] public Transform player;
+    private Vector2 oldPosition;
+    private Vector2 newPosition;
 
     private void Start()
     {
@@ -23,34 +27,50 @@ public class Wormhole : MonoBehaviour
     {
         if (active && other.CompareTag("Player"))
         {
-            StartCoroutine(TeleportPlayer(other.transform));
+            player = other.transform;
+
+            int direction = (int)Mathf.Sign(player.position.x);
+            oldPosition = player.position;
+            newPosition = new(player.position.x + gm.dimensionOffset * 2 * -direction, player.position.y);
+
+            StartCoroutine(WormholeActivation());
         }
     }
 
-    private IEnumerator TeleportPlayer(Transform player)
+    private IEnumerator WormholeActivation()
     {
-        int direction = (int)Mathf.Sign(player.position.x);
-
-        Vector2 oldPosition = player.position;
-        Vector2 newPosition = new(player.position.x + gm.dimensionOffset * 2 * -direction, player.position.y);
-
-        SetEnabled(false);
+        WormHoleActive(false);
         player.position = newPosition;
+        gm.AddActiveWormhole(this);
 
         yield return new WaitForSeconds(shiftDuration);
 
-        player.position = oldPosition;
-
-        yield return new WaitForSeconds(shiftCooldown);
-
-        SetEnabled(true);
+        fullInstability = true;
     }
 
-    private void SetEnabled(bool enabled)
+    public void TeleportBack()
     {
-        active = enabled;
+        player.position = oldPosition;
+        StartCoroutine(Restabalise());
+    }
 
-        if (enabled) spriteRenderer.sprite = sprite;
+    private IEnumerator Restabalise()
+    {
+        yield return new WaitForSeconds(shiftCooldown);
+
+        fullInstability = false;
+        player = null;
+        oldPosition = new();
+        newPosition = new();
+
+        WormHoleActive(true);
+    }
+
+    private void WormHoleActive(bool isActive)
+    {
+        active = isActive;
+
+        if (isActive) spriteRenderer.sprite = sprite;
         else spriteRenderer.sprite = null;
     }
 }

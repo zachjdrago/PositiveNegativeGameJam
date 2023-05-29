@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,7 +10,9 @@ public class GameManager : MonoBehaviour
     [Header("Shadow Management")]
     public List<GameObject> shadows;
 
-    void Start()
+    [HideInInspector] public List<Wormhole> activeWormholes;
+
+    private void Start()
     {
         for(int i = 0; i < shadows.Count; i++)
         {
@@ -17,8 +20,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        
+        if (activeWormholes.Count > 0)
+        {
+            Wormhole currentWormhole = activeWormholes[activeWormholes.Count - 1];
+            if (currentWormhole.fullInstability)
+            {
+                currentWormhole.TeleportBack();
+                activeWormholes.Remove(currentWormhole);
+            }
+        }
+    }
+
+    public void AddActiveWormhole(Wormhole wormhole)
+    {
+        activeWormholes.Add(wormhole);
     }
 }
