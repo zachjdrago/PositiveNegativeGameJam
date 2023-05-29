@@ -33,7 +33,7 @@ public class EvilObjects : MonoBehaviour
 
         if (!isActive)
         {
-            rend.color = Color.gray;
+            rend.color = Color.green;
         }
         else if (isActive && !isDeadly)
         {
