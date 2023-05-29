@@ -14,5 +14,6 @@ public class PlayerShadow : MonoBehaviour
     void Update()
     {
         transform.position = new(-playerTransform.position.x, playerTransform.position.y);
+       
     }
 }
