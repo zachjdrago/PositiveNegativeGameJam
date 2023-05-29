@@ -1250,6 +1250,7 @@ MonoBehaviour:
   - {fileID: 685128857}
   - {fileID: 1335298518}
   - {fileID: 1358288047}
+  activeWormholes: []
 --- !u!1 &1419328007
 GameObject:
   m_ObjectHideFlags: 0
