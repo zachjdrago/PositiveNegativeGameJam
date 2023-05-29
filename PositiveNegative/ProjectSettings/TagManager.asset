@@ -7,6 +7,9 @@ TagManager:
   - Player1
   - Player2
   - Ground
+  - Evil
+  - Negative
+  - Positive
   layers:
   - Default
   - TransparentFX
