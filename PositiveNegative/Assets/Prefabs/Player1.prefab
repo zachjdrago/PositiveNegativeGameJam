@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6196519560531319329, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196519560538817525, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6196519560538817527, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -21,7 +29,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6196519561010776672, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
       propertyPath: m_Name
-      value: PlayerOne
+      value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196519561010776672, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6196519561010776675, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
       propertyPath: player
@@ -70,6 +82,10 @@ PrefabInstance:
     - target: {fileID: 6196519561010776685, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196519561759061755, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b53d644d11dcab4f8230668dceb374e, type: 3}
