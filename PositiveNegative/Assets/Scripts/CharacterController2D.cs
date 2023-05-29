@@ -38,7 +38,13 @@ public class CharacterController2D : MonoBehaviour
     private bool Grounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRadius);
-        if (hit.collider != null) return hit.collider.CompareTag("Ground");
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Ground")) return true;
+            else if (hit.collider.CompareTag("Positive")) return true;
+            else if (hit.collider.CompareTag("Negative")) return true;
+            else return false;
+        }
         else return false;
     }
 
