@@ -13,6 +13,7 @@ public class Wormhole : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [HideInInspector] public Transform player;
+    [HideInInspector] public CharacterController2D playerScript;
     private Vector2 oldPosition;
     private Vector2 newPosition;
 
@@ -26,6 +27,7 @@ public class Wormhole : MonoBehaviour
         if (active && other.CompareTag("Player"))
         {
             player = other.transform;
+            playerScript = other.GetComponent<CharacterController2D>();
 
             int direction = (int)Mathf.Sign(player.position.x);
             oldPosition = player.position;
@@ -58,9 +60,6 @@ public class Wormhole : MonoBehaviour
         yield return new WaitForSeconds(shiftCooldown);
 
         fullInstability = false;
-        player = null;
-        oldPosition = Vector2.zero;
-        newPosition = Vector2.zero;
 
         WormholeActive(true);
     }
