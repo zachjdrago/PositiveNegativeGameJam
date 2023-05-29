@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class CharacterController2D : MonoBehaviour
         Player1,
         Player2
     }
-
+    
     [Space()]
 
     public PlayerNumber player;
@@ -51,6 +52,8 @@ public class CharacterController2D : MonoBehaviour
         if(playerCollider == null) playerCollider = GetComponent<Collider2D>();
     }
 
+    
+
     private void LateUpdate()
     {
         rb.velocity = new Vector2(MoveInput(), rb.velocity.y);
@@ -59,5 +62,6 @@ public class CharacterController2D : MonoBehaviour
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
+        
     }
 }
