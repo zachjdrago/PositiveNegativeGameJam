@@ -3219,6 +3219,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1716275965674321287, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
+      propertyPath: m_TagString
+      value: Positive
+      objectReference: {fileID: 0}
     - target: {fileID: 2809367237170460019, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
       propertyPath: m_RootOrder
       value: 42
@@ -3963,6 +3967,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1207328640}
     - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
+      propertyPath: IsNegative
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
       propertyPath: EndPosition
       value: 
       objectReference: {fileID: 1823253150}
@@ -4693,8 +4701,8 @@ MonoBehaviour:
   - {fileID: 322921827}
   - {fileID: 1938492112}
   activeWormholes: []
-  negativeInstabilityMask: {fileID: 0}
-  positiveInstabilityMask: {fileID: 0}
+  negativeInstabilityMask: {fileID: 1129510459}
+  positiveInstabilityMask: {fileID: 1645097980}
 --- !u!1 &775679165
 GameObject:
   m_ObjectHideFlags: 0
@@ -5434,6 +5442,10 @@ PrefabInstance:
     - target: {fileID: 1716275965674321287, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716275965674321287, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
+      propertyPath: m_TagString
+      value: Positive
       objectReference: {fileID: 0}
     - target: {fileID: 2809367237170460019, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
       propertyPath: m_RootOrder
@@ -6184,7 +6196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080630101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: -0.002, z: -0.011936771}
+  m_LocalPosition: {x: 14.48, y: 10.16, z: -0.011936771}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6556,6 +6568,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1129510459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6744954563790107554, guid: 01aa8f348a1143c48b49cd7e213462a4, type: 3}
+  m_PrefabInstance: {fileID: 4998733149401045219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1148421697
 GameObject:
   m_ObjectHideFlags: 0
@@ -7028,6 +7051,10 @@ PrefabInstance:
       propertyPath: Door
       value: 
       objectReference: {fileID: 855114337}
+    - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
+      propertyPath: IsNegative
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
       propertyPath: EndPosition
       value: 
@@ -7847,6 +7874,10 @@ PrefabInstance:
     - target: {fileID: 1716275965674321287, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716275965674321287, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
+      propertyPath: m_TagString
+      value: Positive
       objectReference: {fileID: 0}
     - target: {fileID: 2809367237170460019, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
       propertyPath: m_RootOrder
@@ -9382,6 +9413,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1455439954}
     - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
+      propertyPath: IsNegative
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
       propertyPath: EndPosition
       value: 
       objectReference: {fileID: 1948549973}
@@ -10152,6 +10187,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2068325901}
     - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
+      propertyPath: IsNegative
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
       propertyPath: EndPosition
       value: 
       objectReference: {fileID: 1080630102}
@@ -10384,6 +10423,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1645097980 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6744954563790107554, guid: 01aa8f348a1143c48b49cd7e213462a4, type: 3}
+  m_PrefabInstance: {fileID: 134307034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1665155165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10410,6 +10460,10 @@ PrefabInstance:
     - target: {fileID: 1716275965674321287, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716275965674321287, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
+      propertyPath: m_TagString
+      value: Positive
       objectReference: {fileID: 0}
     - target: {fileID: 2809367237170460019, guid: 1225bb5ef11bc1b41831de0eba57acb0, type: 3}
       propertyPath: m_RootOrder
@@ -12059,6 +12113,10 @@ PrefabInstance:
       propertyPath: Door
       value: 
       objectReference: {fileID: 1424334289}
+    - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
+      propertyPath: IsNegative
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7067204912349386487, guid: c328ebc02d6b67a4190b5fc3638c12b4, type: 3}
       propertyPath: EndPosition
       value: 
