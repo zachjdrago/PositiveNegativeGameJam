@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Player1
   - Player2
+  - Ground
+  - Evil
+  - Negative
+  - Positive
   layers:
   - Default
   - TransparentFX
@@ -14,10 +18,10 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - NegativePlayer
+  - PositivePlayer
+  - Negative
+  - Positive
   - 
   - 
   - 

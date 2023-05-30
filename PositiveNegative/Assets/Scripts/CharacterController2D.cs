@@ -1,65 +1,70 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterController2D : MonoBehaviour
 {
-    public float speed = 5f;
-    public float jumpForce = 5f;
-    public Transform groundCheck;
+    public enum PlayerNumber
+    {
+        Select,
+        Player1,
+        Player2
+    }
+    
+    [Space()]
+
+    public PlayerNumber player;
+
+    [Header("Movement")]
+    [Range(1,10)] public float speed = 5f;
+    [Range(1,10)] public float jumpForce = 5f;
+    private float MoveInput()
+    {
+        return Input.GetAxis(player.ToString() + "_Horizontal") * speed;
+    }
+    private bool JumpInput()
+    {
+        switch (player)
+        {
+            case PlayerNumber.Player1: return Input.GetKeyDown(KeyCode.Joystick1Button0);
+            case PlayerNumber.Player2: return Input.GetKeyDown(KeyCode.Joystick2Button0);
+            default: Debug.LogError(gameObject.name + " must have a player number assigned."); return false;
+        }
+    }
+
+    [Header("Collision")]
     public LayerMask groundLayer;
-    public float groundCheckRadius = 0.2f;
+    public Transform groundCheck;
+    [Range(0,1)] public float groundCheckRadius = 0.2f;
+    private bool Grounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRadius);
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Ground")) return true;
+            else if (hit.collider.CompareTag("Positive")) return true;
+            else if (hit.collider.CompareTag("Negative")) return true;
+            else return false;
+        }
+        else return false;
+    }
 
-    private Rigidbody2D rb;
-    private Collider2D playerCollider;
-    private bool isGrounded;
-    private bool isPlayer1;
-    private bool isPlayer2;
-
-    private string horizontalAxis;
-    private string jumpButton;
+    [Header("Components")]
+    public Rigidbody2D rb;
+    public Collider2D playerCollider;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<Collider2D>();
-        isPlayer1 = tag == "Player1";
-        isPlayer2 = tag == "Player2";
-
-        if (isPlayer1)
-        {
-            horizontalAxis = "Player1_Horizontal";
-            jumpButton = "Player1_Jump";
-        }
-        else if (isPlayer2)
-        {
-            horizontalAxis = "Player2_Horizontal";
-            jumpButton = "Player2_Jump";
-        }
+        if(rb == null) rb = GetComponent<Rigidbody2D>();
+        if(playerCollider == null) playerCollider = GetComponent<Collider2D>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        float moveInput = Input.GetAxis(horizontalAxis);
+        rb.velocity = new Vector2(MoveInput(), rb.velocity.y);
 
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-
-        if (isGrounded && Input.GetButtonDown(jumpButton))
+        if (Grounded() && JumpInput())
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
-
-        isGrounded = CheckGrounded();
-    }
-
-    private bool CheckGrounded()
-    {
-        float extraHeight = 0.1f;
-        RaycastHit2D hit = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeight, groundLayer);
-        return hit.collider != null;
     }
 }
-
-
-
-
