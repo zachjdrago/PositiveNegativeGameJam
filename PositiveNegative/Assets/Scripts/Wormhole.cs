@@ -66,9 +66,10 @@ public class Wormhole : MonoBehaviour
 
     private void WormholeActive(bool isActive)
     {
-        active = isActive;
-
-        if (isActive) spriteRenderer.enabled = true;
-        else spriteRenderer.sprite = null;
+        if (isActive)
+        {
+            spriteRenderer.enabled = true;
+            active = isActive;
+        }
     }
 }
