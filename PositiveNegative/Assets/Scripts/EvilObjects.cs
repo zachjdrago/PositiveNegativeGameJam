@@ -12,6 +12,9 @@ public class EvilObjects : MonoBehaviour
     bool isActive;
     bool isDeadly;
 
+    public List <Animator> Spikes;
+
+
     SpriteRenderer rend;
 
     private Collider2D DeathCollider;
@@ -31,7 +34,7 @@ public class EvilObjects : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        if (!isActive)
+      /*  if (!isActive)
         {
             rend.color = Color.green;
         }
@@ -42,7 +45,7 @@ public class EvilObjects : MonoBehaviour
         else if (isActive && isDeadly)
         {
             rend.color = Color.red;
-        }
+        }*/
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -51,8 +54,13 @@ public class EvilObjects : MonoBehaviour
         {
             containsPlayer = true;
 
-            if (!isActive)
+            if (!isActive && Spikes.Count>0)
             {
+                for (int i = 0; i<Spikes.Count; i++)
+                {
+                    Spikes[i].SetTrigger("ActivateSpikes");
+                }
+
                 StartCoroutine(DeadState());
             }
         }
