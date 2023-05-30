@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using static CharacterController2D;
 
 public class GameManager : MonoBehaviour
@@ -10,10 +11,16 @@ public class GameManager : MonoBehaviour
 
     [Header("Shadow Management")]
     public List<GameObject> shadows;
-
+    [Space()]
+    [Header("Wormhole Management")]
     [HideInInspector] public List<Wormhole> activeWormholes;
     public Volume negativeInstabilityMask;
     public Volume positiveInstabilityMask;
+    [Space()]
+    [Header("Exit Doors")]
+    public string sceneToLoad;
+    public List<ExitDoor> exitDoors;
+    private bool allDoorsActive;
 
     private void Start()
     {
@@ -49,6 +56,21 @@ public class GameManager : MonoBehaviour
                 activeWormholes.Remove(currentWormhole);
             }
         }
+
+        if (exitDoors.Count > 0)
+        {
+            allDoorsActive = true;
+            for (int i = 0; i < exitDoors.Count; i++)
+            {
+                if (!exitDoors[i].playerHere) allDoorsActive = false; //Debug.Log("playerHere = " + exitDoors[i].playerHere);
+            }
+            if (allDoorsActive)
+            {
+                Debug.Log("Load Scene");
+                SceneManager.LoadScene(sceneToLoad);
+            }
+        }
+        else Debug.LogWarning("No exit doors have been set. The level is not completable");
     }
 
     public void AddActiveWormhole(Wormhole wormhole)
