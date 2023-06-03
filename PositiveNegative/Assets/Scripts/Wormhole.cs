@@ -6,7 +6,7 @@ public class Wormhole : MonoBehaviour
     [Range(3, 15)] public float shiftDuration = 3;
     [Range(1, 15)] public float shiftCooldown = 1;
 
-    public GameManager gm;
+    public GameManager gameManager;
 
     private bool active = true;
     private bool destabilising = false;
@@ -46,7 +46,7 @@ public class Wormhole : MonoBehaviour
 
             int direction = (int)Mathf.Sign(player.position.x);
             oldPosition = player.position;
-            newPosition = new Vector2(player.position.x + gm.dimensionOffset * 2 * -direction, player.position.y);
+            newPosition = new Vector2(player.position.x + gameManager.dimensionOffset * 2 * -direction, player.position.y);
 
             WormholeActivation();
         }
@@ -57,7 +57,7 @@ public class Wormhole : MonoBehaviour
         WormholeActive(false);
         player.position = newPosition;
         spriteRenderer.enabled = false;
-        gm.AddActiveWormhole(this);
+        gameManager.AddActiveWormhole(this);
 
         destabilising = true;
     }
