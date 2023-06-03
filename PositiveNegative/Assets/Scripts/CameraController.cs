@@ -1,5 +1,5 @@
 using UnityEngine;
-using static CharacterController2D;
+using static Player;
 
 public class CameraController : MonoBehaviour
 {

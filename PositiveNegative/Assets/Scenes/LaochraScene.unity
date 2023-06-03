@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6744954563790107554, guid: 01aa8f348a1143c48b49cd7e213462a4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6744954563790107554, guid: 01aa8f348a1143c48b49cd7e213462a4, type: 3}
       propertyPath: sharedProfile
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 4998733149401045219}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 134307034}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -1348,9 +1348,13 @@ MonoBehaviour:
   - {fileID: 685128857}
   - {fileID: 1335298518}
   - {fileID: 1358288047}
-  activeWormholes: []
   negativeInstabilityMask: {fileID: 839855373}
   positiveInstabilityMask: {fileID: 969242022}
+  instabilityVignetteIntensity: 0.75
+  defaultScreenColour: {r: 1, g: 1, b: 1, a: 0}
+  instabilityScreenColour: {r: 0.8259519, g: 0.6273585, b: 1, a: 0}
+  instabilityDistortionIntensity: 1
+  activeWormholes: []
   sceneToLoad: LevelOne
   exitDoors:
   - {fileID: 3782203734703007812}
@@ -2019,7 +2023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6744954563790107554, guid: 01aa8f348a1143c48b49cd7e213462a4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6744954563790107554, guid: 01aa8f348a1143c48b49cd7e213462a4, type: 3}
       propertyPath: sharedProfile

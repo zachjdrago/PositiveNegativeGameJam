@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using static CharacterController2D;
+using static Player;
 using UnityEngine;
 public class PushableCheck: MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class PushableCheck: MonoBehaviour
         // Check if the colliding object is the allowed prefab
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.GetComponent<CharacterController2D>().player == targetPlayer)
+            if (collision.gameObject.GetComponent<Player>().number == targetPlayer)
             {
                 isBeingPushed = true;
                 rb.bodyType = RigidbodyType2D.Dynamic; // Change body type to dynamic when pushed
@@ -33,7 +33,7 @@ public class PushableCheck: MonoBehaviour
         // Check if the colliding object is the allowed prefab
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.GetComponent<CharacterController2D>().player == targetPlayer)
+            if (collision.gameObject.GetComponent<Player>().number == targetPlayer)
             {
                 isBeingPushed = false;
             }

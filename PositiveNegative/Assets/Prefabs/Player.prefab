@@ -40,8 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6196519561010776685}
-  - component: {fileID: 2880887750654488193}
+  - component: {fileID: 6636382709185014778}
   - component: {fileID: 6196519561010776675}
+  - component: {fileID: 2880887750654488193}
   - component: {fileID: 6196519561010776674}
   - component: {fileID: 6196519561010776684}
   m_Layer: 0
@@ -68,6 +69,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6636382709185014778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196519561010776672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179b1698dd9144940a76c5d995cc4430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 0
+  movement: {fileID: 6196519561010776675}
+  rigidbody: {fileID: 6196519561010776674}
+  collider: {fileID: 6196519561010776684}
+--- !u!114 &6196519561010776675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196519561010776672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee5beb0f9cbccb4d93983dc8802e9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6636382709185014778}
+  speed: 5
+  jumpForce: 7
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheck: {fileID: 6196519560531319328}
+  groundCheckRadius: 0.1
 --- !u!212 &2880887750654488193
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -120,28 +157,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6196519561010776675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6196519561010776672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee5beb0f9cbccb4d93983dc8802e9d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: 0
-  speed: 5
-  jumpForce: 7
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheck: {fileID: 6196519560531319328}
-  groundCheckRadius: 0.1
-  rb: {fileID: 6196519561010776674}
-  playerCollider: {fileID: 6196519561010776684}
 --- !u!50 &6196519561010776674
 Rigidbody2D:
   serializedVersion: 4

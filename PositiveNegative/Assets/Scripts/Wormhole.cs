@@ -9,17 +9,32 @@ public class Wormhole : MonoBehaviour
     public GameManager gm;
 
     private bool active = true;
-    [HideInInspector] public bool fullInstability;
+    private bool destabilising = false;
+    [HideInInspector] public float stability;
+    [HideInInspector] public bool fullInstability = false;
     private SpriteRenderer spriteRenderer;
 
     [HideInInspector] public Transform player;
-    [HideInInspector] public CharacterController2D playerScript;
+    [HideInInspector] public Player playerScript;
     private Vector2 oldPosition;
     private Vector2 newPosition;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        stability = shiftDuration;
+    }
+
+    private void Update()
+    {
+        if (destabilising) stability -= Time.deltaTime;
+
+        if (stability < 0)
+        {
+            stability = 0;
+            destabilising = false;
+            fullInstability = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -27,26 +42,24 @@ public class Wormhole : MonoBehaviour
         if (active && other.CompareTag("Player"))
         {
             player = other.transform;
-            playerScript = other.GetComponent<CharacterController2D>();
+            playerScript = other.GetComponent<Player>();
 
             int direction = (int)Mathf.Sign(player.position.x);
             oldPosition = player.position;
             newPosition = new Vector2(player.position.x + gm.dimensionOffset * 2 * -direction, player.position.y);
 
-            StartCoroutine(WormholeActivation());
+            WormholeActivation();
         }
     }
 
-    private IEnumerator WormholeActivation()
+    private void WormholeActivation()
     {
         WormholeActive(false);
         player.position = newPosition;
         spriteRenderer.enabled = false;
         gm.AddActiveWormhole(this);
 
-        yield return new WaitForSeconds(shiftDuration);
-
-        fullInstability = true;
+        destabilising = true;
     }
 
     public void TeleportBack()
@@ -70,6 +83,7 @@ public class Wormhole : MonoBehaviour
         {
             spriteRenderer.enabled = true;
             active = isActive;
+            stability = shiftDuration;
         }
     }
 }
