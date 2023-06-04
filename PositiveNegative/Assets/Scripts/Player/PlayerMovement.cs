@@ -25,12 +25,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     [Header("Collision")]
-    public LayerMask groundLayer;
-    public Transform groundCheck;
-    [Range(0,1)] public float groundCheckRadius = 0.2f;
+    #pragma warning disable CS0108
+    public Rigidbody2D rigidbody;
+    public Collider2D collider;
+#pragma warning restore CS0108
+
+    [Space()]
+    public Transform groundCheckOrigin;
+    [Range(0,1)] public float groundCheckRadius = 0.1f;
     private bool Grounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRadius);
+        RaycastHit2D hit = Physics2D.Raycast(groundCheckOrigin.position, Vector2.down, groundCheckRadius);
         if (hit.collider != null)
         {
             if (hit.collider.CompareTag("Ground")) return true;
@@ -43,11 +48,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        player.rigidbody.velocity = new Vector2(MoveInput(), player.rigidbody.velocity.y);
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(MoveInput(), player.GetComponent<Rigidbody>().velocity.y);
 
         if (Grounded() && JumpInput())
         {
-            player.rigidbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
 }

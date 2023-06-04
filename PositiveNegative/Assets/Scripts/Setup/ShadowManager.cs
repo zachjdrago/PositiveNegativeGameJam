@@ -7,7 +7,6 @@ public class ShadowManager : MonoBehaviour
     public Transform shadowsParent;
     [Space()]
     public List<GameObject> shadowedObjects;
-    public List<GameObject> shadows;
     private GameManager gameManager;
 
     private void Awake()
@@ -16,12 +15,10 @@ public class ShadowManager : MonoBehaviour
 
         for (int i = 0; i < shadowedObjects.Count; i++)
         {
-            GameObject currentShadow = Instantiate(shadowPrefab, shadowsParent);
-            shadows.Add(currentShadow);
+            Shadow currentShadow = Instantiate(shadowPrefab, shadowsParent).GetComponent<Shadow>();
 
-            Shadow currentShadowScript = currentShadow.GetComponent<Shadow>();
-            currentShadowScript.gameManager = gameManager;
-            currentShadowScript.target = shadowedObjects[i];
+            currentShadow.gameManager = gameManager;
+            currentShadow.target = shadowedObjects[i];
         }
     }
 }

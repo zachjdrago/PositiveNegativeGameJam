@@ -13,18 +13,9 @@ public class Player : MonoBehaviour
     [Header("Player Script Components")]
     public PlayerMovement movement;
 
-    [Header("Other Components")]
-    #pragma warning disable CS0108
-    public Rigidbody2D rigidbody;
-    public Collider2D collider;
-    #pragma warning restore CS0108
-
     private void Awake()
     {
         if (movement == null) movement = GetComponent<PlayerMovement>();
         movement.player = this;
-
-        if (rigidbody == null) rigidbody = GetComponent<Rigidbody2D>();
-        if (collider == null) collider = GetComponent<Collider2D>();
     }
 }
