@@ -6,7 +6,7 @@ public class Shadow : MonoBehaviour
     private Transform targetTransform;
     private int direction;
 
-    [HideInInspector] public GameManager gm;
+    [HideInInspector] public GameManager gameManager;
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer targetSpriteRenderer;
 
@@ -22,7 +22,7 @@ public class Shadow : MonoBehaviour
 
     void Update()
     {
-        transform.position = new(targetTransform.position.x + gm.dimensionOffset * 2 * -direction, targetTransform.position.y);
+        transform.position = new(targetTransform.position.x + gameManager.dimensionOffset * 2 * -direction, targetTransform.position.y);
         transform.localScale = targetTransform.localScale;
         transform.rotation = targetTransform.rotation;
     }

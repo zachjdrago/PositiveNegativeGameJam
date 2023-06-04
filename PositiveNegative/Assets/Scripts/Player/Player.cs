@@ -14,10 +14,10 @@ public class Player : MonoBehaviour
     public PlayerMovement movement;
 
     [Header("Other Components")]
-#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
+    #pragma warning disable CS0108
     public Rigidbody2D rigidbody;
     public Collider2D collider;
-#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
+    #pragma warning restore CS0108
 
     private void Awake()
     {

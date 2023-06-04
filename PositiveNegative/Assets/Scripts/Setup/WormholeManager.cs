@@ -3,52 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 using static DataManagement;
 using static Player;
 
-public class GameManager : MonoBehaviour
+public class WormholeManager : MonoBehaviour
 {
-    [Range(100, 250)] public float dimensionOffset = 100;
+    [Space()]
+    public List<Wormhole> wormholes;
+    [HideInInspector] public List<Wormhole> activeWormholes;
+    [HideInInspector] public GameManager gameManager;
 
-    [Header("Shadow Management")]
-    public List<GameObject> shadows;
-
-    [Space(10)]
-
-    [Header("Wormhole Management")]
+    [Space(), Header("Masks")]
     public Volume negativeInstabilityMask;
     public Volume positiveInstabilityMask;
 
-    [Space()]
-
+    [Space(), Header("Vignette")]
     [Range(0, 1)] public float instabilityVignetteIntensity;
     private Vignette instabilityVignette;
 
-    [Space()]
-
+    [Space(), Header("Colour")]
     [ColorUsage(false, true)] public Color defaultScreenColour;
     [ColorUsage(false, true)] public Color instabilityScreenColour;
     private ColorAdjustments instabilityColourAdjustments;
 
-    [Space()]
-
+    [Space(), Header("Distortion")]
     [Range(0, 1)] public float instabilityDistortionIntensity;
     private ChromaticAberration instabilityDistortion;
-    [HideInInspector] public List<Wormhole> activeWormholes;
 
-    [Space(10)]
-
-    [Header("Exit Doors")]
-    public string sceneToLoad;
-    public List<ExitDoor> exitDoors;
-    private bool allDoorsActive;
-
-    private void Start()
+    private void Awake()
     {
-        for(int i = 0; i < shadows.Count; i++)
+        gameManager = gameObject.GetComponent<GameManager>();
+
+        for (int i = 0; i < wormholes.Count; i++)
         {
-            shadows[i].GetComponent<Shadow>().gm = this;
+            Wormhole currentWormhole = wormholes[i].GetComponent<Wormhole>();
+            currentWormhole.gameManager = gameManager;
+            currentWormhole.wormholeManager = this;
         }
     }
 
@@ -82,17 +72,6 @@ public class GameManager : MonoBehaviour
                 activeWormholes.Remove(currentWormhole);
             }
         }
-
-        if (exitDoors.Count > 0)
-        {
-            allDoorsActive = true;
-            for (int i = 0; i < exitDoors.Count; i++)
-            {
-                if (!exitDoors[i].PlayerHere()) allDoorsActive = false;
-            }
-            if (allDoorsActive) SceneManager.LoadScene(sceneToLoad);
-        }
-        else Debug.LogWarning("No exit doors have been set. The level is not completable");
     }
 
     public void ProgressInstabilityEffect(Volume volume, Wormhole currentWormhole)
@@ -104,7 +83,7 @@ public class GameManager : MonoBehaviour
         if (instabilityDistortion == null)
             volume.profile.TryGet(out instabilityDistortion);
 
-        float instability = InvertRatio(currentWormhole.stability/currentWormhole.shiftDuration);
+        float instability = InvertRatio(currentWormhole.stability / currentWormhole.shiftDuration);
 
         instabilityVignette.intensity.value = instability * instabilityVignetteIntensity;
         instabilityColourAdjustments.colorFilter.value = instabilityScreenColour;
@@ -113,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     public void DisableInstabilityEffect(Volume volume)
     {
-        if (instabilityVignette == null) 
+        if (instabilityVignette == null)
             volume.profile.TryGet(out instabilityVignette);
         if (instabilityColourAdjustments == null)
             volume.profile.TryGet(out instabilityColourAdjustments);

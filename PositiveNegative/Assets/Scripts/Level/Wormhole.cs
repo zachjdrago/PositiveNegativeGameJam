@@ -6,7 +6,8 @@ public class Wormhole : MonoBehaviour
     [Range(3, 15)] public float shiftDuration = 3;
     [Range(1, 15)] public float shiftCooldown = 1;
 
-    public GameManager gameManager;
+    [HideInInspector] public GameManager gameManager;
+    [HideInInspector] public WormholeManager wormholeManager;
 
     private bool active = true;
     private bool destabilising = false;
@@ -57,7 +58,7 @@ public class Wormhole : MonoBehaviour
         WormholeActive(false);
         player.position = newPosition;
         spriteRenderer.enabled = false;
-        gameManager.AddActiveWormhole(this);
+        wormholeManager.AddActiveWormhole(this);
 
         destabilising = true;
     }
